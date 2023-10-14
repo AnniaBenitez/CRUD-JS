@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - CRUD JS</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body onload="init()">
+    <h1>USUARIOS DEL SISTEMA</h1>
+    <button onclick="fnCrearUsuario()">Nuevo Usuario</button>
+
+    <div id="divForm" class="form oculto">
+        <h2>Nuevo Usuario</h2>
+
+        <div>
+            Nombre:
+            <input type="text" id="txtName" /> <br />
+            Email:
+            <input type="email" id="txtEmail" /> <br />
+            Edad:
+            <input type="number" id="txtEdad" /> <br />
+
+            <input type="button" value="Guardar" onclick="fnGuardarUsuario()" />
+            <input type="button" value="Cancelar" onclick="fnCancelarUsuario()" />
+        </div>
+    </div>
+
+    <div id="divTabla" class="tabla"></div>
+
+    <script src="./js/objetos/user.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-const g_users = [];
+const usuariosRegistrados = [];
 
 
 

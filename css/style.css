@@ -1,13 +1,36 @@
-.form {
-    border: solid 1px blue;
-    margin: 10px 25px;
-    padding: 15px;
+body{
+    background: linear-gradient(rgb(175, 175, 241), pink);
+    overflow: hidden;
 }
 
-.tabla {
-    border: solid 1px green;
-    margin: 10px 25px;
-    padding: 15px;
+.contenedorPrincipal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: center;
+    height: 100vh;
+    width: 100vh;
+    margin: auto;
+}
+
+.cuadro{
+    height: 500px;
+    width: 350px;
+    padding: 3%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    background-color: white;
+    border-radius: 2%;
+}
+
+.cuadro2{
+    height: 100vh;
+    width: 100%;
+}
+
+.titulo1{
+    padding: 4%;
+    font-size: large;
+    text-align: center;
 }
 
 .visible{
