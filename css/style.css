@@ -1,0 +1,19 @@
+.form {
+    border: solid 1px blue;
+    margin: 10px 25px;
+    padding: 15px;
+}
+
+.tabla {
+    border: solid 1px green;
+    margin: 10px 25px;
+    padding: 15px;
+}
+
+.visible{
+    display:block;
+}
+
+.oculto{
+    display:none;
+}
