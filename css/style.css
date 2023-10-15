@@ -4,11 +4,15 @@
     box-sizing: border-box;
 }
 
-html,body{
+html{
+    overflow: hidden;
+}
+
+body{
     background: linear-gradient(rgb(175, 175, 241), pink);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 700px;
+    height: 900px;
 }
 
 .contenedorPrincipal{
@@ -156,4 +160,29 @@ html,body{
 .usuario{
     color: white;
     text-decoration: none;
+}
+
+.borde{
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid rgb(219, 215, 215);
+    margin: 10px;
+}
+
+.total_compra{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.total_label{
+    font-size: 25px;
+}
+
+.total_input{
+    width: 250px;
+    height: 50px;
+    background-color: rgba(218, 211, 211, 0);
+    border-radius: 5px;
+    border: transparent;
 }
