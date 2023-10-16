@@ -6,6 +6,7 @@
 
 html{
     overflow: hidden;
+    background: linear-gradient(rgb(175, 175, 241), pink);
 }
 
 body{
@@ -185,4 +186,8 @@ body{
     background-color: rgba(218, 211, 211, 0);
     border-radius: 5px;
     border: transparent;
+}
+
+.alerta{
+    color: red;
 }

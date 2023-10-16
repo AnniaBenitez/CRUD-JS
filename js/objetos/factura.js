@@ -9,4 +9,47 @@ class Factura{
         this.items = items
     }
     
+    getID() {
+        return this.id
+    }
+
+    getFecha() {
+        return this.fecha
+    }
+
+    getCliente() {
+        return this.cliente
+    }
+
+    getVendedor() {
+        return this.vendedor
+    }
+
+    getIsCredito() {
+        return this.isCredito
+    }
+
+    getItems() {
+        return this.items
+    }
+
+    setFecha(fecha) {
+        this.fecha = fecha
+    }
+
+    setCliente(cliente) {
+        this.cliente = cliente
+    }
+
+    setVendedor(vendedor) {
+        this.vendedor = vendedor
+    }
+
+    setIsCredito(isCredito) {
+        this.isCredito = isCredito
+    }
+
+    setItems(items) {
+        this.items = items
+    } 
 }

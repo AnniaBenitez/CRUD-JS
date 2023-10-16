@@ -8,4 +8,40 @@ class Factura{
         this.telefono = telefono
     }
     
+    getID() {
+        return this.id
+    }
+
+    getNombre() {
+        return this.nombre
+    }
+
+    getRuc() {
+        return this.ruc
+    }
+
+    getDireccion() {
+        return this.direccion
+    }
+
+    getTelefono() {
+        return this.telefono
+    }
+
+    setNombre(nombre) {
+        this.nombre = nombre 
+    }
+
+    setRuc(ruc) {
+        this.ruc = ruc
+    }
+
+    setDireccion(direccion) {
+        this.direccion = direccion
+    }
+
+    setTelefono(telefono) {
+        this.telefono = telefono
+    }    
 }
+

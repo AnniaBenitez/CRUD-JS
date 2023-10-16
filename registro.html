@@ -41,11 +41,12 @@
 
                 <div class="bottom_page d-flex justify-content-between">
                     <div class="botones d-flex">
-                        <button type="button" id="boton_ingresar" class="btn m-2 btn-primary btn-block mb-4" value="Guardar" onclick="fnGuardarUsuario()">
+                        <p id="alerta" class="alerta oculto">El correo ya existe!</p>
+                        <button type="button" id="boton_registrar" class="btn m-2 btn-primary btn-block mb-4" value="Guardar">
                             Registrarme
                         </button>
         
-                        <button type="button" id="boton_cancelar" class="btn m-2 btn-primary btn-block mb-4" value="Cancelar" onclick="fnCancelarUsuario()">
+                        <button type="button" id="boton_cancelar" class="btn m-2 btn-primary btn-block mb-4" value="Cancelar" >
                             Cancelar
                         </button>
                     </div>
@@ -59,9 +60,8 @@
         </div> 
     </div>
     
-
     <script src="./js/objetos/user.js"></script>
-    <script src="./js/app.js"></script>
+    <script src="./js/registro.js"></script>
 </body>
 
 </html>
