@@ -5,8 +5,9 @@
 }
 
 html{
-    overflow: hidden;
     background: linear-gradient(rgb(175, 175, 241), pink);
+    align-items: center;
+    justify-content: center;
 }
 
 body{
@@ -14,6 +15,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     height: 900px;
+    align-items: center;
+    justify-content: center;
 }
 
 .contenedorPrincipal{
@@ -32,12 +35,12 @@ body{
     padding: 3%;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     background-color: white;
-    border-radius: 2%;
+    border-radius: 5px;
 }
 
 .cuadro2{
     height: auto;
-    width: 100%;
+    width: 1000px;
 }
 
 .titulo1{
@@ -190,4 +193,17 @@ body{
 
 .alerta{
     color: red;
+}
+
+.agregar{
+    position: absolute;
+}
+
+.atras{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#guardar_editado{
+    display: none;
 }

@@ -18,11 +18,11 @@ class Factura{
     }
 
     getCliente() {
-        return this.cliente
+        return this.cliente.getNombre
     }
 
     getVendedor() {
-        return this.vendedor
+        return this.vendedor.getNombre
     }
 
     getIsCredito() {
