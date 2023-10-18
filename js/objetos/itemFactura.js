@@ -1,5 +1,5 @@
 
-class Factura{
+class itemFactura{
     constructor(cantidad, descripcion, precio, subtotal){
         this.cantidad = cantidad
         this.descripcion = descripcion

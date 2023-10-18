@@ -1,4 +1,4 @@
-class Cliente{
+class cliente{
     constructor(id,nombre, ruc, direccion, telefono){
         this.id = id
         this.nombre = nombre

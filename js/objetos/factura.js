@@ -1,5 +1,5 @@
 let generateId= 0;
-class Factura{
+class factura{
     constructor(fecha, cliente, vendedor, isCredito, items){
         this.id = generateId++
         this.fecha = fecha

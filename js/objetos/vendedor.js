@@ -1,7 +1,6 @@
-let generateId= 0;
-class Factura{
-    constructor(nombre, ruc, direccion, telefono, porcentajeComision){
-        this.id = generateId++
+class vendedor{
+    constructor(id, nombre, ruc, direccion, telefono, porcentajeComision){
+        this.id = id
         this.nombre = nombre
         this.ruc = ruc
         this.direccion = direccion

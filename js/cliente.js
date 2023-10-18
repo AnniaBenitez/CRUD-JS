@@ -112,7 +112,7 @@ function alerta(){
 }
 
 function crearCliente(nombre,ruc,direccion,telefono) {
-    let newCliente = new Cliente(clientes.length, nombre, ruc, direccion, telefono)  
+    let newCliente = new cliente(clientes.length, nombre, ruc, direccion, telefono)  
     clientes.push(newCliente)  
     localStorage.setItem("clientes", JSON.stringify(clientes))
     console.log("registro exitoso!")
@@ -144,15 +144,14 @@ saveEditBtn.addEventListener("click", ()=>{
     console.log("inicio")
 
 
-    for(var i = 0; i < clientes.length; i++){
-        console.log("hola")
-        console.log(editar.id + ' - ' + clientes[i].id)
-        if(editar.id == clientes[i].id){
+    for(let i = 0; i < clientes.length; i++){
+        if(editar.id == clientes[i].id && validarUsuario(document.getElementById("ruc").value)){
             clientes[i].nombre = document.getElementById("nombre").value
             clientes[i].ruc = document.getElementById("ruc").value
             clientes[i].direccion = document.getElementById("direccion").value
             clientes[i].telefono = document.getElementById("telefono").value
         }
+        console.log('error con ruc')
     }
     
     console.log("guardado!")
