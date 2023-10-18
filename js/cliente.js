@@ -77,7 +77,7 @@ function fnActualizarTabla(){
 
 function cerrar_ventana(){
     newCliente.style.display = "none"
-    form_cliente.reset();
+    form_cliente.reset()
 }
 
 btn_crear.addEventListener("click",()=>{

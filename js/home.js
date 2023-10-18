@@ -16,6 +16,7 @@ const btnCliente = document.getElementById('btnCliente')
 const btnVendedor = document.getElementById('btnVendedor')
 const btnBuscador = document.getElementById('btnBuscador')
 const confUsuario = document.getElementById('confUsuario')
+const btnInventario = document.getElementById('btnInventario')
 
 btnFactura.addEventListener('click', ()=>{
     window.location.href = 'factura.html'
@@ -23,6 +24,10 @@ btnFactura.addEventListener('click', ()=>{
 
 btnCliente.addEventListener('click', ()=>{
     window.location.href = 'cliente.html'
+})
+
+btnInventario.addEventListener('click', ()=>{
+    window.location.href = 'inventario.html'
 })
 
 btnVendedor.addEventListener('click', ()=>{

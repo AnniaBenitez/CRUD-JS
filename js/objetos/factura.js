@@ -1,7 +1,7 @@
-let generateId= 0;
+
 class factura{
-    constructor(fecha, cliente, vendedor, isCredito, items){
-        this.id = generateId++
+    constructor(id, fecha, cliente, vendedor, isCredito, items){
+        this.id = id
         this.fecha = fecha
         this.cliente = cliente
         this.vendedor = vendedor

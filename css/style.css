@@ -189,6 +189,9 @@ body{
     background-color: rgba(218, 211, 211, 0);
     border-radius: 5px;
     border: transparent;
+    font-size: 40px;
+    padding: 2%;
+    text-align: right;
 }
 
 .alerta{
