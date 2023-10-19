@@ -3,6 +3,9 @@ const ventana_new_factura = document.getElementById("ventana_new_factura")
 const form_crear_factura = document.getElementById('form_crear_factura')
 const botonCrearFactura = document.getElementById("btn_new_factura")
 const btnVolverAtras = document.getElementById("atras")
+const btnAnular = document.getElementById("anular")
+const btnDetalle = document.getElementById("detalle")
+const div_detalle_fac = document.getElementById("div_detalle_fac")
 
 //Botones pagina crear factura
 const guardarNewFactura = document.getElementById("guardar_factura")
@@ -12,13 +15,20 @@ const btnAgregarItem = document.getElementById('btnAgregarItem')
 const selectItem = document.getElementById('item')
 const cantidadInput = document.getElementById('cantidad')
 const subtotalInput = document.getElementById('subtotal')
-let lista_de_compras = []
+
+//Botonces pagina detalle factura
+const cancelar3 = document.getElementById("cerrar3")
+const cancelar4 = document.getElementById("cerrar4")
 
 //Datos del localStorage
 let facturas = JSON.parse(localStorage.getItem("facturas")) || []
 let clientes = JSON.parse(localStorage.getItem("clientes")) || []
 let vendedores = JSON.parse(localStorage.getItem("vendedores")) || []
 let Items = JSON.parse(localStorage.getItem("Items")) || []
+let lista_de_compras = []
+
+actualizarListaFacturas()
+actualizarListaItems("items_factura")
 
 botonCrearFactura.addEventListener("click", ()=>{
     document.getElementById("fecha").value = getFechaActual()
@@ -33,6 +43,14 @@ cancelar.addEventListener("click", ()=>{
 })
 
 cancelar2.addEventListener("click", ()=>{
+    cerrar_ventana()
+})
+
+cancelar3.addEventListener("click", ()=>{
+    cerrar_ventana()
+})
+
+cancelar4.addEventListener("click", ()=>{
     cerrar_ventana()
 })
 
@@ -60,57 +78,9 @@ selectItem.addEventListener('change', ()=>{
     subtotalInput.value = parseInt(cantidadInput.value) * parseInt(Item.precio)
 })
 
-window.onload = actualizarListaItems()
-function actualizarListaItems(){
-
-    const listado = document.getElementById("tabla")
-
-    if(facturas.length === 0){
-        listado.innerHTML = '<table class="table table-stripe"><tr>No existen facturas...</tr></table>';
-        return;    
-    }
-
-    const buff = [];
-    buff.push('<table class="table table-stripe">');
-    buff.push(' <thead>');
-    buff.push('    <tr>');
-    buff.push('      <th>Id</th>');
-    buff.push('      <th>Fecha</th>');
-    buff.push('      <th>Cliente</th>');
-    buff.push('      <th>Vendedor</th>');
-    buff.push('      <th>Credito</th>');
-    buff.push('      <th>Total</th>');    
-    buff.push('      <th>Borrar</th>');
-    buff.push('      <th>Editar</th>');
-    buff.push('      <th>Detalle</th>');
-    buff.push('    </tr>');
-    buff.push('  </thead>');
-    buff.push('  <tbody>');
-
-            
-    for(let i = 0; i< facturas.length; i++){
-        const tmpUser = facturas[i];
-
-        buff.push('<tr>');
-        buff.push('<td>'+ tmpUser.id +'</td>');
-        buff.push('<td>'+ tmpUser.fecha +'</td>');
-        buff.push('<td>'+ tmpUser.cliente.getNombre +'</td>');
-        buff.push('<td>'+ tmpUser.vendedor.getNombre +'</td>');
-        buff.push('<td>'+ tmpUser.total +'</td>');
-        buff.push('<td><input type="button" value="Borrar" class="btn btn-danger" onclick = "borrarFactura('+ tmpUser.id +')" id="borrar"/></td>');
-        buff.push('<td><input type="button" value="Editar" class="btn btn-info" onclick = "editarFactura('+ tmpUser.id +')" id="editar"/></td>');
-        buff.push('<td><input type="button" value="Detalle" class="btn btn-info" onclick = "verDetalle('+ tmpUser.id +')" id="editar"/></td>');
-        buff.push('</tr>');
-    }
-
-    buff.push('</tbody>');
-    buff.push('</table>');
-
-    divTabla.innerHTML =  buff.join('\n');
-}
-
 function cerrar_ventana(){
     ventana_new_factura.style.display = "none"
+    div_detalle_fac.style.display = "none"
     form_crear_factura.reset()
 }
 
@@ -177,13 +147,18 @@ function getMetodoPago(){
     }
 }
 
-function aggItem(){
-    let subtotal = parseInt(cantidadInput.value) * parseInt(getItem(selectItem.value).precio)
-    lista_de_compras.push(new itemFactura(parseInt(cantidadInput.value) , getItem(selectItem.value), subtotal))
-    actualizarListaItems()
-    cantidadInput.value = ''
-    selectItem.value = undefined
-    subtotal = ''
+function aggItem(){   
+    if(validarItem(selectItem.value, cantidadInput.value)){
+        let subtotal = parseInt(cantidadInput.value) * parseInt(getItem(selectItem.value).precio)
+        lista_de_compras.push(new itemFactura(parseInt(cantidadInput.value) , getItem(selectItem.value), subtotal))
+        actualizarListaItems("items_factura")
+        cantidadInput.value = ''
+        selectItem.value = undefined
+        subtotal = ''
+    }
+    else{
+        alerta()
+    }    
 }
 
 function guardar_factura(){
@@ -205,57 +180,11 @@ function guardar_factura(){
     
 }
 
-actualizarListaItems()
-function actualizarListaItems(){
-
-    const listado = document.getElementById("items_factura")
-
-    if(lista_de_compras.length === 0){
-        listado.innerHTML = '<table class="table table-stripe"><tr>No existen Items...</tr></table>';
-        return;    
-    }
-
-    const buff = [];
-    buff.push('<table class="table table-stripe">');
-    buff.push(' <thead>');
-    buff.push('    <tr>');
-    buff.push('      <th>#</th>');
-    buff.push('      <th>Descripcion</th>');
-    buff.push('      <th>Cantidad</th>');
-    buff.push('      <th>Precio</th>');
-    buff.push('      <th>Subtotal</th>');
-    buff.push('      <th>Borrar</th>');
-    buff.push('    </tr>');
-    buff.push('  </thead>');
-    buff.push('  <tbody>');
-
-            
-    for(let i = 0; i< lista_de_compras.length; i++){
-        const tmp = lista_de_compras[i];
-
-        buff.push('<tr>');
-        buff.push('<td>'+ i +'</td>');
-        buff.push('<td>'+ tmp.item.descripcion +'</td>');
-        buff.push('<td>'+ tmp.cantidad + '</td>');
-        buff.push('<td>'+ tmp.item.precio +'</td>');
-        buff.push('<td>'+ tmp.subtotal +'</td>');
-        buff.push('<td><input type="button" value="Borrar" class="btn btn-danger" onclick = "borrarItemFactura('+ i +')" id="borrar"/></td>');
-        buff.push('</tr>');
-    }
-
-    buff.push('</tbody>');
-    buff.push('</table>');
-
-    listado.innerHTML =  buff.join('\n');
-    document.getElementById('total').value = calcularTotal()
-}
-
-actualizarListaFacturas()
 function actualizarListaFacturas(){
 
     const listado = document.getElementById("tabla")
 
-    if(lista_de_compras.length === 0){
+    if(facturas.length === 0){
         listado.innerHTML = '<table class="table table-stripe"><tr>No existen Facturas...</tr></table>';
         return;    
     }
@@ -282,8 +211,8 @@ function actualizarListaFacturas(){
         buff.push('<tr>');
         buff.push('<td>'+ tmp.id +'</td>');
         buff.push('<td>'+ tmp.fecha+'</td>');
-        buff.push('<td>'+ tmp.cliente.nombre + '</td>');
-        buff.push('<td>'+ tmp.vendedor.nombre +'</td>');
+        buff.push('<td>'+ (tmp.cliente).nombre + '</td>');
+        buff.push('<td>'+ (tmp.vendedor).nombre +'</td>');
         buff.push('<td>'+ tmp.isCredito +'</td>');
         buff.push('<td><input type="button" value="detalle" class="btn btn-info" onclick = "verDetalleFactura('+ tmp.id +')" id="detalle"/></td>');
         buff.push('<td><input type="button" value="anular" class="btn btn-danger" onclick = "anularItemFactura('+ tmp.id +')" id="anular"/></td>');
@@ -296,6 +225,60 @@ function actualizarListaFacturas(){
     listado.innerHTML =  buff.join('\n');
 }
 
+function actualizarListaItems(zona){
+    const listado = document.getElementById(zona)
+    if(zona == 'items_factura_detalle'){
+        document.getElementById('total_detalle').value = calcularTotal()
+    }
+    else{            
+        document.getElementById('total').value = calcularTotal()
+    } 
+
+    if(lista_de_compras.length === 0){
+        listado.innerHTML = '<table class="table table-stripe"><tr>No existen Items...</tr></table>';
+        return;    
+    }
+
+    const buff = [];
+    buff.push('<table class="table table-stripe">');
+    buff.push(' <thead>');
+    buff.push('    <tr>');
+    buff.push('      <th>#</th>');
+    buff.push('      <th>Descripcion</th>');
+    buff.push('      <th>Cantidad</th>');
+    buff.push('      <th>Precio</th>');
+    buff.push('      <th>Subtotal</th>');
+    buff.push('      <th>Borrar</th>');
+    buff.push('    </tr>');
+    buff.push('  </thead>');
+    buff.push('  <tbody>');
+
+            
+    for(let i = 0; i< lista_de_compras.length; i++){
+        const tmp = lista_de_compras[i];
+
+        
+        buff.push('<tr>');
+        buff.push('<td>'+ i +'</td>');
+        buff.push('<td>'+ tmp.item.descripcion +'</td>');
+        buff.push('<td>'+ tmp.cantidad + '</td>');
+        buff.push('<td>'+ tmp.item.precio +'</td>');
+        buff.push('<td>'+ tmp.subtotal +'</td>');
+        if(zona == 'items_factura_detalle'){
+            buff.push('<td><input type="button" value="Borrar" class="btn btn-danger" disabled/></td>');
+        }
+        else{
+            buff.push('<td><input type="button" value="Borrar" class="btn btn-danger" onclick = "borrarItemFactura('+ i +')" id="borrar"/></td>');
+        }        
+        buff.push('</tr>');
+    }
+
+    buff.push('</tbody>');
+    buff.push('</table>');
+
+    listado.innerHTML =  buff.join('\n');    
+}
+
 function calcularTotal(){
     let tot = 0
     for(let i=0; i<lista_de_compras.length; i++){
@@ -305,20 +288,34 @@ function calcularTotal(){
 }
 
 function validarFactura(cliente_actual, vendedor_actual){   
-    if(cliente_actual != undefined){
-        return true
+    if(lista_de_compras.length == 0){
+        return false
     }
-    if(vendedor_actual != undefined){
-        return true
+    if(cliente_actual == 'undefined'){
+        return false
     }
-    return false
+    if(vendedor_actual == 'undefined'){
+        return false
+    }
+    return true
+}
+
+function validarItem(item_actual, cantidad){   
+    if(item_actual == 'undefined'){
+        return false
+    }
+    if(cantidad <= 0){
+        return false
+    }
+    return true
 }
 
 function crearFactura(fecha_actual, cliente_actual, vendedor_actual, isCredito, lista_de_compras) {
-    let nuevaFactura = new factura(facturas.length, fecha_actual, cliente_actual, vendedor_actual, isCredito, lista_de_compras) 
+    let nuevaFactura = new factura(facturas[facturas.length-1].id+1, fecha_actual, cliente_actual, vendedor_actual, isCredito, lista_de_compras) 
     facturas.push(nuevaFactura)  
     localStorage.setItem("facturas", JSON.stringify(facturas))
     console.log("registro exitoso!")
+    lista_de_compras.splice(0,lista_de_compras.length);
 }
 
 function alerta(){    
@@ -328,51 +325,27 @@ function alerta(){
     },3000)
 }
 
-///////////////////////
-/*
-
-
-
-function borrarVendedor(vendedor_id){
-    let vendedor = vendedores.find(user => user.id == vendedor_id) 
-    vendedores = vendedores.filter((user) => user !== vendedor)
-    localStorage.setItem("vendedores", JSON.stringify(vendedores))
-    fnActualizarTabla()
+function borrarItemFactura(index){
+    lista_de_compras.splice(index, 1);
+    actualizarListaItems("items_factura")
 }
 
-function editarVendedor(vendedor_id){
-    let vendedor = vendedores.find(user => user.id == vendedor_id) 
-    localStorage.setItem("editar", JSON.stringify(vendedor))
-
-    document.getElementById("nombre").value = vendedor.nombre
-    document.getElementById("ruc").value = vendedor.ruc
-    document.getElementById("direccion").value = vendedor.direccion
-    document.getElementById("telefono").value = vendedor.telefono  
-    document.getElementById("porcentaje").value = vendedor.porcentajeComision  
-
-    newVendedorVentana.style.display = "block"
-    btn_crear.style.display = "none"
-    saveEditBtn.style.display = "block"      
+function anularItemFactura(id){
+    let factura = facturas.find(f => f.id == id) 
+    facturas = facturas.filter((f) => f !== factura)
+    localStorage.setItem("facturas", JSON.stringify(facturas))
+    actualizarListaFacturas()
 }
 
-saveEditBtn.addEventListener("click", ()=>{    
-    let editar = JSON.parse(localStorage.getItem("editar"))
+function verDetalleFactura(id){
+    let factura = facturas.find(f => f.id == id)                                //se toma la factura a detallar
+    document.getElementById("fecha_detalle").value = factura.fecha              //se carga la fecha
+    document.getElementById("cliente_detalle").value = factura.cliente.nombre   //se carga el nombre    
+    document.getElementById("vendedor_detalle").value = factura.vendedor.nombre //se carga vendedor     
+    document.getElementById("metodo_detalle").value = factura.isCredito         //Se marca si es contado/ credito  
+    document.getElementById('label_metodo_detalle').innerHTML = factura.isCredito   //'' 
+    lista_de_compras = factura.items                                            //se carga lista de items
+    actualizarListaItems('items_factura_detalle')                               //''    
 
-
-    for(let i = 0; i < vendedores.length; i++){
-        if(editar.id == vendedores[i].id){
-            vendedores[i].nombre = document.getElementById("nombre").value
-            vendedores[i].ruc = document.getElementById("ruc").value
-            vendedores[i].direccion = document.getElementById("direccion").value
-            vendedores[i].telefono = document.getElementById("telefono").value
-            vendedores[i].porcentajeComision = document.getElementById("porcentaje").value
-        }
-    }
-    
-    console.log("guardado!")
-    localStorage.setItem("vendedores", JSON.stringify(vendedores))
-    localStorage.removeItem("editar")
-    cerrar_ventana()
-    fnActualizarTabla()
-})
-*/
+    div_detalle_fac.style.display = "block"                                     //Se muestra ventana
+}

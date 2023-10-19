@@ -115,7 +115,7 @@ function alerta(){
 }
 
 function crearVendedor(nombre,ruc,direccion,telefono,porcentaje) {
-    let newVendedor = new vendedor(vendedores.length, nombre, ruc, direccion, telefono, porcentaje)  
+    let newVendedor = new vendedor(vendedores[vendedores.length-1].id+1, nombre, ruc, direccion, telefono, porcentaje)  
     vendedores.push(newVendedor)  
     localStorage.setItem("vendedores", JSON.stringify(vendedores))
     console.log("registro exitoso!")
