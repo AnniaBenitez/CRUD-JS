@@ -35,8 +35,15 @@ function validarUsuario(username,email,password, confirmPassword){
 }
 
 function crearUsuario(nombre,username,email,password) {
-    let newUser = new User(usuarios[usuarios.length-1].id+1, nombre, username, email, password)  
-    usuarios.push(newUser)  
+    let newUsuario
+    if(usuarios.length == 0){
+        newUsuario = new User(0, nombre, username, email, password) 
+    }
+    else{
+        let calcularID = usuarios[usuarios.length-1].id+1
+        newUsuario = new User(calcularID, nombre, username, email, password)  
+    }  
+    usuarios.push(newUsuario)  
     localStorage.setItem("usuarios", JSON.stringify(usuarios))
     console.log("registro exitoso!")
 }

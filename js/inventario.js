@@ -109,7 +109,14 @@ function alerta(){
 }
 
 function crearItem(descripcion,precio) {
-    let newItem = new items(facturas[facturas.length-1].id+1, descripcion, precio)  
+    let newItem
+    if(Items.length == 0){
+        newItem = new items(0, descripcion, precio)  
+    }
+    else{
+        let calcularID = Items[Items.length-1].id+1
+        newItem = new items(calcularID, descripcion, precio)  
+    }    
     Items.push(newItem)  
     localStorage.setItem("Items", JSON.stringify(Items))
     console.log("registro exitoso!")

@@ -115,7 +115,14 @@ function alerta(){
 }
 
 function crearVendedor(nombre,ruc,direccion,telefono,porcentaje) {
-    let newVendedor = new vendedor(vendedores[vendedores.length-1].id+1, nombre, ruc, direccion, telefono, porcentaje)  
+    let newVendedor
+    if(vendedores.length == 0){
+        newVendedor = new vendedor(0, nombre, ruc, direccion, telefono, porcentaje) 
+    }
+    else{
+        let calcularID = vendedores[vendedores.length-1].id+1
+        new vendedor(calcularID, nombre, ruc, direccion, telefono, porcentaje)
+    }    
     vendedores.push(newVendedor)  
     localStorage.setItem("vendedores", JSON.stringify(vendedores))
     console.log("registro exitoso!")

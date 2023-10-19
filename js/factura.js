@@ -207,7 +207,6 @@ function actualizarListaFacturas(){
             
     for(let i = 0; i< facturas.length; i++){
         const tmp = facturas[i];
-
         buff.push('<tr>');
         buff.push('<td>'+ tmp.id +'</td>');
         buff.push('<td>'+ tmp.fecha+'</td>');
@@ -311,7 +310,14 @@ function validarItem(item_actual, cantidad){
 }
 
 function crearFactura(fecha_actual, cliente_actual, vendedor_actual, isCredito, lista_de_compras) {
-    let nuevaFactura = new factura(facturas[facturas.length-1].id+1, fecha_actual, cliente_actual, vendedor_actual, isCredito, lista_de_compras) 
+    let nuevaFactura
+    if(facturas.length == 0){
+        nuevaFactura = new factura(0, fecha_actual, cliente_actual, vendedor_actual, isCredito, lista_de_compras, calcularTotal()) 
+    }
+    else{
+        let calcularID = facturas[facturas.length-1].id+1
+        nuevaFactura = new factura(calcularID, fecha_actual, cliente_actual, vendedor_actual, isCredito, lista_de_compras, calcularTotal()) 
+    }    
     facturas.push(nuevaFactura)  
     localStorage.setItem("facturas", JSON.stringify(facturas))
     console.log("registro exitoso!")

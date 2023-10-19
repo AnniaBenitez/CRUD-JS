@@ -112,7 +112,14 @@ function alerta(){
 }
 
 function crearCliente(nombre,ruc,direccion,telefono) {
-    let newCliente = new cliente(clientes[clientes.length-1].id+1, nombre, ruc, direccion, telefono)  
+    let newCliente
+    if(clientes.length == 0){
+        newCliente = new cliente(0, nombre, ruc, direccion, telefono)  
+    }
+    else{
+        let calcularID = clientes[clientes.length-1].id+1
+        newCliente = new cliente(calcularID, nombre, ruc, direccion, telefono)   
+    }  
     clientes.push(newCliente)  
     localStorage.setItem("clientes", JSON.stringify(clientes))
     console.log("registro exitoso!")
