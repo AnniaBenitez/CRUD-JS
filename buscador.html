@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar Facturas</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container contenedorPrincipal">
+        <div class="cuadro cuadro2">
+            <h1 class="titulo1">Buscar Facturas</h1>
+            <form class="d-flex flex-column justify-content-around" id="formulario">
+                <div class="borde row">
+                    <div class="form-outline mb-4 col-6">
+                        <label class="form-label" for="fecha_inicio">Fecha Inicial:</label>
+                        <input type="date" id="fecha_inicio" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4 col-6">
+                        <label class="form-label" for="fecha_fin">Fecha Final:</label>
+                        <input type="date" id="fecha_fin" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="bottom_page d-flex botones">
+                    <button type="button" id="boton_buscar" class="btn m-2 btn-primary btn-block mb-4" value="buscar">
+                        Buscar
+                    </button>
+                    <button type="button" id="boton_cancelar" class="btn m-2 btn-primary btn-block mb-4" value="atras">
+                        Volver Atrás
+                    </button>
+                </div>
+            </form>  
+            <div id="lista_de_facturas" class="borde">
+
+            </div>
+        </div>
+    </div>
+    <script src="js/buscador.js"></script>
+    <script src="js/objetos/factura.js"></script>
+</body>
+
+</html>

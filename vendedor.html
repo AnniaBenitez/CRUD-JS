@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendedor</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container contenedorPrincipal">
+        <div class="agregar cuadro cuadro2 oculto" id="new_ventana">
+            <button type="button" class="btn-close" id="cerrar" aria-label="Close"></button>
+            <h1 class="titulo1">Vendedor</h1>
+            <form class="d-flex flex-column justify-content-around" id="form_new_vendedor">
+                <div class="borde d-flex flex-column">
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="ruc">Ruc:</label>
+                        <input type="text" id="ruc" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="porcentaje">Porcentaje de Comisión:</label>
+                        <input type="number" id="porcentaje" class="form-control" />
+                    </div>
+                </div>
+
+                <p style="display: none;" id="alerta" class="alerta">Error al agregar Vendedor!</p>
+
+                <div class="bottom_page d-flex botones" id="botones">
+                    <button type="button" id="guardar_editado" class="btn m-2 btn-primary btn-block mb-4"
+                        value="editar_vendedor">
+                        Guardar Editado
+                    </button>
+
+                    <button type="button" id="guardar_vendedor" class="btn m-2 btn-primary btn-block mb-4"
+                        value="guardar_vendedor">
+                        Guardar Vendedor
+                    </button>
+
+                    <button type="button" id="cerrar2" class="btn m-2 btn-primary btn-block mb-4" value="Cancelar">
+                        Cancelar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="cuadro cuadro2" id="listado">
+            <button type="button" id="new_vendedor" class="btn m-2 btn-primary btn-block mb-4" value="new_vendedor">
+                Nuevo Vendedor
+            </button>
+            <div class="borde" id="tabla"></div>
+            <div class="atras">
+                <button type="button" id="atras" class="btn m-2 btn-primary btn-block mb-4" value="atras">
+                    Volver atrás
+                </button>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="./js/objetos/vendedor.js"></script>
+<script src="./js/vendedor.js"></script>
+
+</html>
